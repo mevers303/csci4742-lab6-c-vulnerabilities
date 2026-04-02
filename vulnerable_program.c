@@ -52,7 +52,6 @@ void bufferUnder(void) {
     char buffer[256];
     char *c = malloc(255 * sizeof(char));
     randStringGen(255, c);
-    // `buffer` is an array of 256 characters (with the final character being the null terminator), but `c` is only allocated 255 characters. When we call `strcpy()` we are attempting to to copy 255 characters into dynamic memory that is allocated for 256 characters, which has one extra character.  The final character is pointing to undefined memory, which is a buffer underflow vulnerability if `buffer[255]` is used later in the program.  It might not be that much of a problem since it currently holds a null-terminated string and most string functions will stop at the null terminater, but it could be a problem in other cases.
     strcpy(buffer, c);  // Possible buffer underflow
     printf("%s\n", buffer);
     free(c);
@@ -60,10 +59,10 @@ void bufferUnder(void) {
 
 // argv[1] = 5
 void bufferOver(void) {
-    char buffer[256];
+    // Below I increased the size of `buffer` from 256 to 260 to accommodate the the full size of `c`.
+    char buffer[260];
     char *c = malloc(260 * sizeof(char));
     randStringGen(260, c);
-    // `buffer` is an array of 256 characters, and `c` is allocated to 260 characters of dynamic memory.  When we copy `c` into `buffer`, we are writing 4 characters past the end of `buffer`'s stack memory.  This is a buffer overflow that overwrites whatever is in the next memory position.
     strcpy(buffer, c);  // Buffer overflow
     printf("%s\n", buffer);
     free(c);

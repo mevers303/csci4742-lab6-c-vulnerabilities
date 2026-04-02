@@ -258,7 +258,7 @@ void unInitializedPtr(void) {
 ```
 
 - **16.** Why does Valgrind possibly show no final "heap error" even though it’s a dangerous bug?  
-  *I am not exactly sure why, but my guess is that it doesn't show a "heap error" because it that block of memory has not yet be re-allocated.  So even though it has been freed, the memory pointed to by that address is not being used yet so it likely won't affect the behavior of any other functions.*
+  *I am not exactly sure why, but my guess is that it doesn't show a "heap error" because it that block of memory has not yet be re-allocated.  So even though it has been freed, the memory pointed to by that address is not being used yet so it likely won't affect the behavior of any other functions.  I also noticed that the output of `vulnerable_program` itself is different.  It's `0` instead of `845276593`.  I am not sure why that is happening, maybe something to do with the way valgrind monitors the memory.*
 
 ### **Updated Code for `danglingPtr` Function**  
 ```c
@@ -280,45 +280,106 @@ void danglingPtr(void) {
 ## **Task 5: Buffer Overflows Analysis**  
 ### **Screenshots**  
 - **For `bufferUnder` (Input 4):**  
-  1. *(Screenshot of Valgrind output with `./vulnerable_program 4`.)*  
+  1. *(Screenshot of Valgrind output with `./vulnerable_program 4`.)*
+     ![./vulnerable_program 4](./screenshots/buffer_under1.png)
+
 - **For `bufferOver` (Input 5):**  
-  2. *(Screenshot of Valgrind output with `./vulnerable_program 5` — if any overflow detected.)*  
-  3. *(Screenshot of AddressSanitizer detection using `./vulnerable_program2 5`.)*  
-  4. *(Screenshot after fixing `bufferOver`, no errors remain.)*  
+  1. *(Screenshot of Valgrind output with `./vulnerable_program 5` — if any overflow detected.)*
+     ![./vulnerable_program 5](./screenshots/buffer_over1.png)
+
+  3. *(Screenshot of AddressSanitizer detection using `./vulnerable_program 5`.)*
+     ![AddressSanitize](./screenshots/addresssanitize.png)
+
+  4. *(Screenshot after fixing `bufferOver`, no errors remain.)*
+     ![Fixed `bufferOver()`](./screenshots/buffer_over_fixed.png)
+
+### **Output from Valgrind**  
+- **Input 4**
+```
+==106834== Memcheck, a memory error detector
+==106834== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==106834== Using Valgrind-3.25.1 and LibVEX; rerun with -h for copyright info
+==106834== Command: ./vulnerable_program 4
+==106834== 
+GZPCBKTWIALFDHKNOHQJJTGPPWHZEKMMMDONOHLYJWDNFPAVWSEFNNXEJEFPQRCCVSRJADHLBMAHBCEZWLGJYDPJHUZAMBCHTUSVZBJANJJQOOPKZVWXZLGIGHIUINDEHVBGYMINYSDMGUWHPUGQGMBOULKEYNKHKMPIYYVWSYKASJHJDNCLBFBXSLCTYOAIASQBSNZKLKMFVVRYIVMLANJSZNLZBOIEGAHAOIMBUYHPTAQDVCOXPZROODQQTY
+==106834== 
+==106834== HEAP SUMMARY:
+==106834==     in use at exit: 0 bytes in 0 blocks
+==106834==   total heap usage: 2 allocs, 2 frees, 1,279 bytes allocated
+==106834== 
+==106834== All heap blocks were freed -- no leaks are possible
+==106834== 
+==106834== For lists of detected and suppressed errors, rerun with: -s
+==106834== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+```
+
+- **Input 5**
+```
+==107579== Memcheck, a memory error detector
+==107579== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==107579== Using Valgrind-3.25.1 and LibVEX; rerun with -h for copyright info
+==107579== Command: ./vulnerable_program 5
+==107579== 
+NVWGDYJHGHTLIPJOHPRUSGHGASZVGAOTXKCALLJRUCCCRLSBCKVVSCBUXDQDFEYCQACBLNVFQZJJLEMPOIKGKODJTTMYXLAPLERZRMGJLQVYUHQKPCSCQVLJOYJNLJDWNWXFKEQVULWQTMCIOUMHSYSIYCWLLBHBZHIJLYGFKCXFQZPHTCQNCIWCKUNYXWZWDJFOHNVTSSYITQRPSHCWQYYCUNCRJDNNMUDWIZPATQKNGCCALEWBFWGZJKRUOGJCBNY
+==107579== 
+==107579== HEAP SUMMARY:
+==107579==     in use at exit: 0 bytes in 0 blocks
+==107579==   total heap usage: 2 allocs, 2 frees, 1,284 bytes allocated
+==107579== 
+==107579== All heap blocks were freed -- no leaks are possible
+==107579== 
+==107579== For lists of detected and suppressed errors, rerun with: -s
+==107579== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+```
+
 
 ### **Answers to Questions**  
 - **(Regarding `bufferUnder`, Input 4)**  
   - **15.** Do you see errors in the Valgrind output?  
-    *(Answer here)*  
+    *No, I do not.*
+
   - **16.** After reading the code, do you expect errors? Why/why not?  
-    *(Answer here)*  
+    *I do not expect any errors because this is a "off by one" error where the destination is one index smaller than the source, so it stays within the bounds of its allocated memory.  Additionally, `randStringGen()` generates a null terminated string.  The way that `strcpy()` and `printf("%s", str)` work is that they work with the string of `char`s and keep going until it encounters the null terminator.  That's what the null terminator is there for!*  
 
 - **(Regarding `bufferOver`, Input 5)**  
   - **17.** Do you expect an error here? Why?  
-    *(Answer here)*  
+    *I do expect to see an error here because we are attempting to copy a string that is 260 `char` long (with index `259` being a null terminator) into a buffer that is only 256 `char` long.*
+
   - **18.** Does Valgrind detect it? If so, what is reported?  
-    *(Answer here)*  
+    *No, it does not detect it.*
+
   - **19.** Why does Valgrind sometimes struggle to detect this kind of buffer overflow?  
-    *(Answer here)*  
+    *I Google'ed it and it is because Valgrind does not detect these kinds of errors for stack memory (as opposed to dynamically allocated heap memory).  This is because the stack is always considered valid memory.  For this call to `strcpy()`, the destination is `buffer` which was declared with `buffer[256]`, which is heap memory.  To test this, I tried a run where I allocated `buffer` dynamically to the heap with `char *buffer = malloc(256 * sizeof(char))` and it did indeed catch the error this time.  There is a `gcc` compiler option called AddressSanitizer that can do it.  There are other Valgrind memory tools though: 'Massif' and 'Dynamic Heap Analysis Tool'.*  
 
 - **(Valgrind vs. Other Tools)**  
   - **20.** List two additional Valgrind tools besides `memcheck`.  
-    *(Answer here)*  
+    *There is a tool called SGCheck that can detect it and can be accessed with the `--tool=exp-sgcheck` option.  I could not find a second tool with this capablility, but `memcheck` is able to detect buffer overflows in the stack if the overflow goes beyond the address space of the stack itself.*  
+
   - **21.** How could these other tools detect errors that `memcheck` misses?  
-    *(Answer here)*  
+    *According to the documentation (https://valgrind.org/docs/manual/sg-manual.html), "\[SGCheck\] uses a heuristic approach based on DWARF3 debugging information to associate memory instructions with specific arrays and flags when an instruction accesses memory outside that array's boundaries"*  
 
 ### **AddressSanitizer Findings**  
 - **22.** What errors does AddressSanitizer report for input `5`?  
-  *(Answer here)*  
+  *It reports `#1 0x55fc507316c9 in bufferOver /home/kali/Documents/lab6/vulnerable_program.c:66` and also shows where the `buffer` variable is declared: `==120098==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7bbeed5f0120 at pc 0x7fbeef8b86a2 bp 0x7ffee79ce290 sp 0x7ffee79cda50
+`*
+
 - **23.** Where in the code does it say the error occurs?  
-  *(Answer here)*  
+  *It reports `[32, 288) 'buffer' (line 62) <== Memory access at offset 288 overflows this variable`*
+
 - **24.** How does AddressSanitizer compare to Valgrind in detecting buffer overflows?  
-  *(Answer here)*  
+  *It seems to do a much better job.  I also tested AddressSanitizer with the buffer allocated to dynamic memory (the heap), which it was able to do as well.  I did that by declaring the `buffer` variable with `char *buffer = malloc(256 * sizeof(char))`*  
 
 ### **Updated Code for `bufferOver` Function**  
 ```c
-/* Insert your corrected bufferOver function here. 
-   Include inline comments explaining the fix. */
+void bufferOver(void) {
+    // Below I increased the size of `buffer` from 256 to 260 to accommodate the the full size of `c`.
+    char buffer[260];
+    char *c = malloc(260 * sizeof(char));
+    randStringGen(260, c);
+    strcpy(buffer, c);  // Buffer overflow
+    printf("%s\n", buffer);
+    free(c);
+}
 ```
 
 ---
@@ -327,6 +388,7 @@ void danglingPtr(void) {
 ### **Screenshots**  
 1. *(Screenshot of `./vulnerable_program 6` showing normal run — note any incorrect result.)*  
 2. *(Screenshot of `valgrind --tool=memcheck ... ./vulnerable_program 6` showing whether it detects overflow.)*  
+   
 3. *(Screenshot of UBSan detection: `./vulnerable_program2 6`.)*  
 4. *(Screenshot of fixed function, showing no more overflow vulnerability.)*  
 
