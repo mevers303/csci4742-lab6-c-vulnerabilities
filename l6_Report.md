@@ -29,6 +29,7 @@ void overRun(void) {
     int *x = malloc(10 * sizeof(int));
     // We have created a buffer of dynamic memory of size 10, but we will write beyond it at index 10, which is out of bounds because index 10 is the 11th element (0-9 are valid indices)
     x[10] = 0;  // Buffer overrun
+    // There should be a call to `free(x)` here to avoid a memory leak, but it is not included in this function.  This is an example of a memory leak vulnerability because the allocated memory is not freed after it is no longer needed.
 }
 
 // argv[1] = 2
@@ -107,6 +108,7 @@ int main(int argc, char**argv) {
 
     return 0;
 }
+
 ```
 
 2. **Program Outputs**  
@@ -116,37 +118,64 @@ int main(int argc, char**argv) {
 
 ## **Task 2: Out-of-Bounds Write (Valgrind)**
 ### **Screenshots**  
-1. *(Screenshot of running `./vulnerable_program 1` without Valgrind.)*  
+1. *(Screenshot of running `./vulnerable_program 1` without Valgrind.)*
+   ![./vulnerable_progam 1](./screenshots/overrun1.png)
+
 2. *(Screenshot of Valgrind output: `valgrind --tool=memcheck ./vulnerable_program 1`.)*  
-3. *(Screenshot of Valgrind with `--leak-check=full`.)*  
-4. *(Screenshot after fixing the `overRun` function to confirm no more errors.)*  
+   ![valgrind --tool=memcheck ./vulnerable_program 1](./screenshots/overrun2.png)
+
+3. *(Screenshot of Valgrind with `--leak-check=full`.)*
+   ![valgrind --leak-check=full ./vulnerable_program 1](./screenshots/overrun1.png)
+
+5. *(Screenshot after fixing the `overRun` function to confirm no more errors.)*
+   ![Fixed `overRun()`](./screenshots/overrun_fixed.png)
 
 ### **Answers to Questions**  
 - **1.** Why does this invalid write error happen?  
-  *(Answer here)*  
+  *We have created an array of `int`s that is 10 `int`s long.  When we do `x[10] = 0`, we are writing past the end of the array because the index begins at `0`, making the 10th position actually at index `9`.  Therefor index `10` is out of bounds.*
+
 - **2.** Why does Valgrind report an "invalid write of size 4"? What does `4` represent?  
-  *(Answer here)*  
+  *In C, the `int` datatype is 4 bytes long.  Since memory is addressed by bytes, this is equal to a size of 4 address places.*
+
 - **3.** What is an off-by-one error? Do you see this error in the `overRun` function?  
-  *(Answer here)*  
-- **4.** What is a memory leak? Explain in your own words. Do you see a memory leak in the `overRun` function?  
-  *(Answer here)*  
+  *An "off by one" error is when the coder makes a mistake in an array index or a loop where they have accidentally accessed or written to the array position that is one position past or before the end.  This is usually caused by the array index starting at `0`.  So the last index of array of length 10 is actually index `9`.*
+
+- **4.** What is a memory leak? Explain in your own words. Do you see a memory leak in the `overRun` function?
+  *A memory leak is when a program dynamically allocates a piece of memory and then fails to de-allocate all or part of it when it is finished.  Writing to index `10` is not a memory leak, but this function also fails to call `free(x)`*
+
 - **5.** Can errors like this occur in Java? Why or why not?  
-  *(Answer here)*  
+  *Java can not perform errors of either kind without at least a runtime exception.  This is because the JRE has built-in bounds checking and also has garbage collection to de-allocate dynamic memory once the pointer is no longer used.*
+
 - **6.** Compare the Heap Summary from normal Valgrind output vs. `--leak-check=full`. What additional details are shown?  
-  *(Answer here)*  
+  *It provides additional debugging information from the `-g` flag when we compiled with `gcc`.  It can see that the memory is never de-allocated at the end of `main()` and has traced the leak to it's position in the code where it was first allocated:*
+```
+==20292== 40 bytes in 1 blocks are definitely lost in loss record 1 of 1
+==20292==    at 0x4849818: malloc (vg_replace_malloc.c:446)
+==20292==    by 0x40011CA: overRun (vulnerable_program.c:8)
+==20292==    by 0x4001441: main (vulnerable_program.c:73)
+```
 
 ### **Updated Code for `overRun` Function**  
 ```c
-/* Insert your corrected overRun function here. 
-   Include inline comments explaining the fix. */
+void overRun(void) {
+    int *x = malloc(10 * sizeof(int));
+    // Below I have changed `x[10]` to `x[9]` to avoid an out-of-bounds access.
+    x[9] = 0;
+    // Below I have added `free(x)` to properly deallocate the memory that was allocated for `x`.
+    free(x);
+}
 ```
 
 ---
 
 ## **Task 3: Uninitialized Pointer Analysis**  
 ### **Screenshots**  
-1. *(Screenshot of `valgrind --tool=memcheck --leak-check=full ./vulnerable_program 2`.)*  
-2. *(Screenshot with `--track-origins=yes` for more detail.)*  
+1. *(Screenshot of `valgrind --tool=memcheck --leak-check=full ./vulnerable_program 2`.)*
+   ![valgrind --tool=memcheck --leak-check=full ./vulnerable_program 2](./screenshots/uninitialized_ptr1.png)
+
+2. *(Screenshot with `--track-origins=yes` for more detail.)*
+   ![valgrind --tool=memcheck --leak-check=full --track-origins=yes ./vulnerable_program 2]()
+
 3. *(Screenshot of fixed function showing no more uninitialized pointer usage issues.)*  
 
 ### **Answers to Questions**  

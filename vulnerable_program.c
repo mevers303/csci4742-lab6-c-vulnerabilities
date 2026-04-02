@@ -16,8 +16,10 @@ void randStringGen(int x, char* c) {
 // argv[1] = 1
 void overRun(void) {
     int *x = malloc(10 * sizeof(int));
-    // We have created a buffer of dynamic memory of size 10, but we will write beyond it at index 10, which is out of bounds because index 10 is the 11th element (0-9 are valid indices)
-    x[10] = 0;  // Buffer overrun
+    // Below I have changed `x[10]` to `x[9]` to avoid an out-of-bounds access.
+    x[9] = 0;
+    // Below I have added `free(x)` to properly deallocate the memory that was allocated for `x`.
+    free(x);
 }
 
 // argv[1] = 2
