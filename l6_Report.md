@@ -1,7 +1,11 @@
 # **Lab 6 Report**  
 ##### CSCY/CSCI 4742: Cybersecurity Programming and Analytics, Spring 2026
 
-**Name & Student ID**: [Your Full Name], [Your Student ID]  
+**Name & Student ID**:  
+Marlon J Williams   110308884  
+Mark Evers          810857406  
+Gabriel Fedorowicz  110449278  
+
 
 ---
 
