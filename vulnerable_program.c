@@ -70,11 +70,11 @@ void bufferOver(void) {
 
 // argv[1] = 6
 void integerOverflow(void) {
-    int a = INT_MAX;  // Max signed int value
-    int b = 1;
-    // We set `a` to the maxium value for a signed integer, and then we add 1 to it.  This causes an integer overflow because the result exceeds the maximum representable value for an `int`. This should cause the value to wrap around to the lowest negative value for a signed `int`, which is not what the coder intended.
-    int result = a + b;  // Causes overflow
-    printf("Integer Overflow: %d + %d = %d\n", a, b, result);
+    // Below I have changed the types from `int` to `unsigned int` to prevent overflow.
+    unsigned int a = INT_MAX;  // Max signed int value
+    unsigned int b = 1;
+    unsigned int result = a + b;
+    printf("Integer Overflow (fixed): %u + %u = %u\n", a, b, result);
 }
 
 int main(int argc, char**argv) {

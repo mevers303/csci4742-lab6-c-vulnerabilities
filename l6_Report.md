@@ -387,29 +387,45 @@ void bufferOver(void) {
 ## **Task 6: Integer Overflow Analysis**  
 ### **Screenshots**  
 1. *(Screenshot of `./vulnerable_program 6` showing normal run — note any incorrect result.)*  
+   ![./vulnerable_program 6](./screenshots/integer_overflow1.png)
+
 2. *(Screenshot of `valgrind --tool=memcheck ... ./vulnerable_program 6` showing whether it detects overflow.)*  
+   ![valgrind --tool=memcheck --leak-check=full --track-origins=yes ./vulnerable_program 6](./screenshots/integer_overflow2.png)
    
-3. *(Screenshot of UBSan detection: `./vulnerable_program2 6`.)*  
-4. *(Screenshot of fixed function, showing no more overflow vulnerability.)*  
+3. *(Screenshot of UBSan detection: `./vulnerable_program2 6`.)*
+   ![UBSan](./screenshots/integer_overflow_fixed.png)
+
+4. *(Screenshot of fixed function, showing no more overflow vulnerability.)*
+    ![Fixed `integerOverflow()`](./screenshots/integer_overflow_fixed.png)
 
 ### **Answers to Questions**  
-- **25.** Why does the overflow occur at `UINT_MAX + 1`?  
-  *(Answer here)*  
+- **25.** Why does the overflow occur at `INT_MAX + 1`?  
+  *It happens because `INT_MAX` is a preprocessor macro that is defined by the highest possible value an `int` can hold within its 4 bytes.  When you add `1` to that, the ALU does a bitwise addition which overflows into the sign bit, setting it to negative.  It's because `0111111 11111111 11111111 11111111` + `00000000 00000000 0000000 00000001` = `10000000 00000000 0000000 00000000`.  That sum is the 2's complement representation of `-2147483648`.*
+
 - **26.** What are common security risks of integer overflows, and how might attackers exploit them?  
-  *(Answer here)* 
+  *That phenomemon could be exploited to access memory addresses out of bounds of the array to read write memory to alter the behavior of other functions.  They could also cause a segmentation fault and crash the program to do a denial of service attack.*
+
  - **27.** Does Valgrind report the integer overflow? If not, why?  
- *(Answer here)* 
+  *It does not detect the integer overflow because the ALU's overflow bit does not flow into the next memory address.  It just an extra bit that functions more like metadata as a flag and is not copied into the stack or heap memory space.*
+
 - **28.** Does UBSan report an error?  
-  *(Answer here)*  
-- **29.** Where in the code does UBSan say the overflow occurs?  
-  *(Answer here)*  
+  *Yes, it says `vulnerable_program.c:76:9: runtime error: signed integer overflow: 2147483647 + 1 cannot be represented in type 'int'`*
+
+- **29.** Where in the code does UBSan say the overflow occurs?
+  *It gives the line and even the character position: `vulnerable_program.c:76:9`*
+
 - **30.** Compare UBSan’s detection to Valgrind’s.  
-  *(Answer here)*  
+  *Since Valgrind did not detect it and UBSan did, UBSan is obviously better.  UBSan is detecting specific specific edge cases by looking at the operations performed as opposed to Valgrind, which is keeping tabs on which areas of the stack are being accessed.*  
 
 ### **Updated Code for `integerOverflow` Function**  
 ```c
-/* Insert your corrected integerOverflow function here. 
-   Include inline comments explaining the fix. */
+void integerOverflow(void) {
+    // Below I have changed the types from `int` to `unsigned int` to prevent overflow.
+    unsigned int a = INT_MAX;  // Max signed int value
+    unsigned int b = 1;
+    unsigned int result = a + b;
+    printf("Integer Overflow (fixed): %u + %u = %u\n", a, b, result);
+}
 ```
 
 ---
