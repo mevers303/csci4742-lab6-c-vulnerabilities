@@ -174,52 +174,105 @@ void overRun(void) {
    ![valgrind --tool=memcheck --leak-check=full ./vulnerable_program 2](./screenshots/uninitialized_ptr1.png)
 
 2. *(Screenshot with `--track-origins=yes` for more detail.)*
-   ![valgrind --tool=memcheck --leak-check=full --track-origins=yes ./vulnerable_program 2]()
+   ![valgrind --tool=memcheck --leak-check=full --track-origins=yes ./vulnerable_program 2](./screenshots/uninitialized_ptr2.png)
 
-3. *(Screenshot of fixed function showing no more uninitialized pointer usage issues.)*  
+3. *(Screenshot of fixed function showing no more uninitialized pointer usage issues.)*
+   ![Fixed `unInitializedPtr()`](./screenshots/uninitialized_ptr_fixed.png)
 
 ### **Answers to Questions**  
-- **7.** Where is the memory problem occurring? What does Valgrind report?  
-  *(Answer here)*  
-- **8.** What is an uninitialized pointer? How could it be exploited?  
-  *(Answer here)*  
+- **7.** Where is the memory problem occurring? What does Valgrind report?
+  *It can be traced with the following debug information.  The error occurs at `strcpy (vg_replace_strmem.c:565)` which can be traced upwards through subsequent stack frames first at `unInitializedPtr (vulnerable_program.c:43)` and second at `main (vulnerable_program.c:75)`*
+```
+==35835== Use of uninitialised value of size 8
+==35835==    at 0x4852E64: strcpy (vg_replace_strmem.c:565)
+==35835==    by 0x400133F: unInitializedPtr (vulnerable_program.c:43)
+==35835==    by 0x400144E: main (vulnerable_program.c:75)
+```
+
+- **8.** What is an uninitialized pointer? How could it be exploited?
+  *An unitialized pointer happens when a coder declares a pointer but never defines it.  It can be exploited because it is going to access an unknown position in the heap.*
+
 - **9.** What is the difference between a `NULL` pointer and an uninitialized pointer?  
-  *(Answer here)*  
+  *A `NULL` pointer is actually an initialized pointer, but it is defined to point at nothing (null). This is different than an unitialized pointer which is never defined to point at anything.  This could point to anything, whatever value happens to be at that pointer's variable in the heap.  In my experience, uninitialized heap memory has always been filled with `0x0`, making the pointer technically a null pointer because in C, `NULL` is a constant equal to `0`.  But officially it is undefined behavior and could be point towards anything.*
+
 - **10.** What specifically in the code do you believe caused the uninitialized pointer usage?  
-  *(Answer here)*  
+  *The line that reads `char *buffer;` is the problem because it is declared but never defined.*
+
 - **11.** What additional detail does `--track-origins=yes` provide?  
-  *(Answer here)*  
+  *It adds the following lines to the output:*
+```
+==42662==  Uninitialised value was created by a stack allocation
+==42662==    at 0x4001306: unInitializedPtr (vulnerable_program.c:39)
+```
+
 - **12.** "Use of uninitialized value of size 8" — what does the `8` refer to?  
-  *(Answer here)*  
+  *Since we are running a 64 bit operating system, all memory addresses are 64 bits long, which is 8 bytes.*
 
 ### **Updated Code for `unInitializedPtr` Function**  
 ```c
-/* Insert your corrected unInitializedPtr function here. 
-   Include inline comments explaining the fix. */
+void unInitializedPtr(void) {
+    // Below I have allocated memory for `buffer` and `c` to avoid using and uninitialized pointer.
+    char *buffer = malloc(10 * sizeof(char));
+    char *c = malloc(10 * sizeof(char));
+    randStringGen(10, c);
+    strcpy(buffer, c);
+    printf("%s\n", buffer);
+    free(c);
+    free(buffer);
+}
 ```
 
 ---
 
 ## **Task 4: Dangling Pointer Analysis**  
 ### **Screenshots**  
-1. *(Screenshot of `./vulnerable_program 3` without Valgrind — note behavior.)*  
-2. *(Screenshot of Valgrind output: `valgrind --tool=memcheck --leak-check=full --track-origins=yes ./vulnerable_program 3`.)*  
-3. *(Screenshot after fixing `danglingPtr`, showing no error.)*  
+1. *(Screenshot of `./vulnerable_program 3` without Valgrind — note behavior.)*
+   ![./vulnerable_program 3](./screenshots/dangling_ptr1.png)
 
+2. *(Screenshot of Valgrind output: `valgrind --tool=memcheck --leak-check=full --track-origins=yes ./vulnerable_program 3`.)*  
+   ![valgrind --tool=memcheck --leak-check=full --track-origins=yes ./vulnerable_program 3](./screenshots/dangling_ptr2.png)
+
+3. *(Screenshot after fixing `danglingPtr`, showing no error.)*
+   ![Fixed `danglingPtr()`](./screenshots/dangling_ptr_fixed.png)
 ### **Answers to Questions**  
 - **13.** What is the potential issue in the `danglingPtr` function?  
-  *(Answer here)*  
+  *Two pointers are defined, `x` and `y`.  `y` is allocated to dynamic memory and then the address is also copied into `x`.  `y` is freed, making the memory it pointed to no longer valid.  Now `x` holds an address to invalid memory.  Then `x` is accessed, which is accessing the invalid memory location.*  
+
 - **14.** How could a dangling pointer be exploited?  
-  *(Answer here)*  
+  *If the memory is freed and then, at a later point in execution, dynamic memory is allocated later then the dangling pointer can read or write to this area of memory that is now being used by another function.  The dangling pointer can then be used to change the behavior of this other function.*
+
 - **15.** What does Valgrind report about the freed memory usage?  
-  *(Answer here)*  
+  *It says `Invalid read of size 4` which is referring to where it tries to read an `int` from memory that was freed.  It says the read occurrs at `vulnerable_program.c:35`.  It also says the value of the offending address is `0x4a73048`, and where `free()` was called in the code (`vulnerable_program.c:34`)*.  It also gives the location in the code where that block of dynamic memory was allocated: `vulnerable_program.c:32`.  That information is given in the stack trace.
+```
+==48094== Invalid read of size 4
+==48094==    at 0x40012E4: danglingPtr (vulnerable_program.c:35)
+==48094==    by 0x400145B: main (vulnerable_program.c:77)
+==48094==  Address 0x4a73048 is 8 bytes inside a block of size 40 free'd
+==48094==    at 0x484C87F: free (vg_replace_malloc.c:989)
+==48094==    by 0x40012DF: danglingPtr (vulnerable_program.c:34)
+==48094==    by 0x400145B: main (vulnerable_program.c:77)
+==48094==  Block was alloc'd at
+==48094==    at 0x4849818: malloc (vg_replace_malloc.c:446)
+==48094==    by 0x40012C7: danglingPtr (vulnerable_program.c:32)
+==48094==    by 0x400145B: main (vulnerable_program.c:77)
+```
+
 - **16.** Why does Valgrind possibly show no final "heap error" even though it’s a dangerous bug?  
-  *(Answer here)*  
+  *I am not exactly sure why, but my guess is that it doesn't show a "heap error" because it that block of memory has not yet be re-allocated.  So even though it has been freed, the memory pointed to by that address is not being used yet so it likely won't affect the behavior of any other functions.*
 
 ### **Updated Code for `danglingPtr` Function**  
 ```c
-/* Insert your corrected danglingPtr function here. 
-   Include inline comments explaining the fix. */
+void danglingPtr(void) {
+    int *x;
+    int *y = malloc(10 * sizeof(int));
+    x = y;
+    // Below, I initialize the dynamic memory to all 0's to avoid valgrind reporting an 'Uninitialized value` error
+    memset(y, 0, 10 * sizeof(int));
+    int t = x[2];
+    printf("Dangling pointer value: %d\n", t);
+    // Below is where I moved the call to `free()`, which is after the last point in the code where it is used.
+    free(y);
+}
 ```
 
 ---

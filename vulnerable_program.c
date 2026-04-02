@@ -24,11 +24,11 @@ void overRun(void) {
 
 // argv[1] = 2
 void unInitializedPtr(void) {
-    char *buffer;
+    // Below I have allocated memory for `buffer` and `c` to avoid using and uninitialized pointer.
+    char *buffer = malloc(10 * sizeof(char));
     char *c = malloc(10 * sizeof(char));
     randStringGen(10, c);
-    // `buffer` is a pointer, but it has not been initialized with a value or allocate to dynamic memory.  When we call `strcpy()`, it is attempting to copy the string to an undefined location in memory
-    strcpy(buffer, c);  // Using an uninitialized pointer
+    strcpy(buffer, c);
     printf("%s\n", buffer);
     free(c);
     free(buffer);
@@ -39,10 +39,12 @@ void danglingPtr(void) {
     int *x;
     int *y = malloc(10 * sizeof(int));
     x = y;
-    free(y);  // x is now a dangling pointer
-    // `y` was allocated dynamic memory, and then `x` was assigned to the same address. After `free(y)`, the memory is deallocated, but `x` still points to that memory location, which is now invalid. So accessing `x[2]` is trying to read from a memory location that has been freed
-    int t = x[2];  // Accessing freed memory
+    // Below, I initialize the dynamic memory to all 0's to avoid valgrind reporting an 'Uninitialized value` error
+    memset(y, 0, 10 * sizeof(int));
+    int t = x[2];
     printf("Dangling pointer value: %d\n", t);
+    // Below is where I moved the call to `free()`, which is after the last point in the code where it is used.
+    free(y);
 }
 
 // argv[1] = 4
