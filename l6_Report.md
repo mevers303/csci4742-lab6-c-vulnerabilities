@@ -38,7 +38,7 @@ void unInitializedPtr(void) {
     char *c = malloc(10 * sizeof(char));
     randStringGen(10, c);
     // `buffer` is a pointer, but it has not been initialized with a value or allocate to dynamic memory.  When we call `strcpy()`, it is attempting to copy the string to an undefined location in memory
-    strcpy(buffer, c);  // Using an uninitialized pointer
+    strcpy(buffer, c);
     printf("%s\n", buffer);
     free(c);
     free(buffer);
@@ -433,23 +433,35 @@ void integerOverflow(void) {
 ## **Task 7: Static Analysis with Flawfinder**  
 ### **Screenshots**  
 1. *(Screenshot of `flawfinder vulnerable_program.c` output.)*  
+   ![FlawFinder](./screenshots/flawfinder.png)
 
 ### **Answers to Questions**  
 - **31.** Differentiate static vs. dynamic analysis of source code.  
-  *(Answer here)*  
+  *Static analysis is performed by reading and interpreting the source code in text format before it is even compiled.  Dynamic analysis is when one executes the code and observes how it operates in memory and the operations it performs while it is executing.*
+
 - **32.** How do static analysis tools like Flawfinder differ from dynamic tools (Valgrind, AddressSanitizer)?  
-  *(Answer here)*  
+  *FlawFinder reads the source code and dynamic tools executes the source code.*
 
 ### **Flawfinder Vulnerabilities**  
 - **33.** `strcpy` issues  
   - Location, risk level, CWE classification, and prevention.  
-  *(Answers here)*  
+    - Location: *lines 31, 55, and 66.*
+    - Risk level: *4*
+    - Relevant CWE: *CWE-120*
+    - Prevention: *Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy
+  easily misused).*
+
 - **34.** `srand` usage (weak randomness)  
-  - Why is it a concern, relevant CWE, safer alternatives.  
-  *(Answers here)*  
+  - Location: *Line 8*
+  - Why is it a concern: *This function is not sufficiently random for security-related functions such as key and nonce creation.*
+  - Relevant CWE: *CWE-327*
+  - Safer alternatives: *Use a more secure technique for acquiring random values.*
+
 - **35.** Statically-sized arrays  
-  - Where used, security risks, relevant CWE, safer approaches.  
-  *(Answers here)*  
+  - Where used: *Lines 52 and 63*
+  - Security risks: *Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues.*
+  - Relevant CWE: *CWE-119!/CWE-120*
+  - Safer approaches: *Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.*
 
 *(Paste or summarize key parts of the Flawfinder output. Explain any false positives or unaddressed concerns.)*
 
@@ -459,4 +471,6 @@ void integerOverflow(void) {
 # **Lab 6: Summary & Reflections**  
 
 ### **Key Takeaways from Lab 6**  
-*(Summarize your main findings, what you learned, and any challenges faced during the lab.)*  
+- *I learned a lot of new debugging techniques!  Flawfinder and Valgrind are great tools, especially Valgrind.  I am going to seach to see if it is possible to integrate those tools with my IDE that I use for coding every day, which is Visual Studio.*  
+- *I was aware of how to avoid the vulnerabilities built into this code, but I had never gone through the trouble of testing them to this extent.*  
+- *I learned that there are safer alternatives to many of the funcitons I use, like I should use `strncpy()` instead of `strcpy()`.*
