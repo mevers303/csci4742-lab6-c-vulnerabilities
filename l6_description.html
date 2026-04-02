@@ -1,0 +1,992 @@
+<!DOCTYPE html><html><head>
+      <title>l6_description</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\jafariha\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.15\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="-lab-6-advanced-memory-corruption-attacks-and-exploitation"><strong>📌 Lab 6: Advanced Memory Corruption Attacks and Exploitation</strong> </h1>
+<p>📖 <strong>Course:</strong> CSCY 4742 – Cybersecurity Programming and Analytics<br>
+🎯 <strong>Total Points:</strong> 100</p>
+<hr>
+<h2 id="-introduction"><strong>📢 Introduction</strong> </h2>
+<p>This lab introduces students to <strong>memory corruption attacks</strong> and <strong>secure coding practices</strong> using <strong>static and dynamic</strong> <strong>code analysis techniques</strong> on Kali Linux.</p>
+<p>Students will:<br>
+✔️ <strong>Analyze C code vulnerabilities using Valgrind, AddressSanitizer, and FlawFinder.</strong><br>
+✔️ <strong>Understand the impact of buffer overflows, use-after-free, and heap spraying.</strong><br>
+✔️ <strong>Implement secure coding practices to mitigate these vulnerabilities.</strong></p>
+<hr>
+<h2 id="-lab-overview"><strong>📌 Lab Overview</strong> </h2>
+<p>In this lab, you will perform hands-on tasks related to <strong>memory corruption and exploitation</strong> by:</p>
+<p>🔹 <strong>Running dynamic analysis tools (Valgrind, AddressSanitizer) to detect memory issues.</strong><br>
+🔹 <strong>Using static analysis with FlawFinder to identify security flaws in C code.</strong><br>
+🔹 <strong>Understanding integer overflows, buffer overflows, and dangling pointers.</strong><br>
+🔹 <strong>Fixing vulnerable C code and verifying security improvements.</strong></p>
+<hr>
+<h2 id="-rubric"><strong>📈 Rubric</strong> </h2>
+<table>
+<thead>
+<tr>
+<th><strong>Part</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Points</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Task 1: Implement and Analyze Vulnerabilities</strong></td>
+<td>Identify and understand different memory vulnerabilities.</td>
+<td><strong>10</strong></td>
+</tr>
+<tr>
+<td><strong>Task 2: Out-of-Bounds Write Analysis (Valgrind)</strong></td>
+<td>Detect and fix buffer overruns using Valgrind.</td>
+<td><strong>15</strong></td>
+</tr>
+<tr>
+<td><strong>Task 3: Uninitialized Pointer Analysis</strong></td>
+<td>Analyze and fix uninitialized memory usage with Valgrind.</td>
+<td><strong>15</strong></td>
+</tr>
+<tr>
+<td><strong>Task 4: Dangling Pointer Analysis</strong></td>
+<td>Investigate and mitigate dangling pointer vulnerabilities.</td>
+<td><strong>15</strong></td>
+</tr>
+<tr>
+<td><strong>Task 5: Buffer Overflow Detection</strong></td>
+<td>Detect and mitigate buffer overflow vulnerabilities using AddressSanitizer.</td>
+<td><strong>15</strong></td>
+</tr>
+<tr>
+<td><strong>Task 6: Integer Overflow Vulnerability</strong></td>
+<td>Analyze and prevent integer overflow issues.</td>
+<td><strong>15</strong></td>
+</tr>
+<tr>
+<td><strong>Task 7: Static Analysis (Flawfinder)</strong></td>
+<td>Identify security flaws using Flawfinder.</td>
+<td><strong>15</strong></td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>Hands-on memory exploitation and secure coding analysis.</strong></td>
+<td><strong>100</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="-lab-environment-setup"><strong>📌 Lab Environment Setup</strong> </h2>
+<p>📌 You will use only <strong>one Kali VM</strong> (Attack or Defense) for this lab.</p>
+<div style="text-align: center; margin: 15px 1;">
+    <hr style="border: 5px; height: 20px; width: 100%;">
+</div>
+<h2 id="introduction"><strong>Introduction</strong> </h2>
+<p>Memory corruption vulnerabilities pose significant security risks, often leading to unauthorized memory access, crashes, or remote code execution. This section explores common memory corruption issues, including buffer overflows, use-after-free, uninitialized memory usage, and integer overflow.</p>
+<p>By implementing these vulnerabilities in a controlled environment, we will analyze their impact using dynamic analysis tools such as Valgrind and AddressSanitizer, and perform static analysis with FlawFinder to detect potential security flaws.</p>
+<hr>
+<h3 id="-task-1-implement-and-test-a-vulnerable-c-code-10-pts"><strong>📌 Task 1: Implement and Test a Vulnerable C Code (10 pts)</strong> </h3>
+<h4 id="-step-1-develop-a-vulnerable-c-program"><strong>🔹 Step 1: Develop a Vulnerable C Program</strong> </h4>
+<p>Develop the following C program on your <strong>Kali Linux attack machine</strong>. This program contains multiple security vulnerabilities, including buffer overflows, dangling pointers, uninitialized memory usage, and integer overflows. You will use this code to analyze and understand common memory-related exploits.</p>
+<p>📌 <strong><code>vulnerable_program.c</code>:</strong></p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;time.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;limits.h&gt;</span>  <span class="token comment">// Required for integer limits</span></span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">overRun</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> <span class="token operator">*</span>x <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token number">10</span> <span class="token operator">*</span> <span class="token keyword keyword-sizeof">sizeof</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    x<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>  <span class="token comment">// Buffer overrun</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">randStringGen</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> x<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span><span class="token operator">*</span> c<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">srand</span><span class="token punctuation">(</span><span class="token function">time</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> x <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token operator">*</span>c <span class="token operator">=</span> <span class="token char">'A'</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">26</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        c<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token operator">*</span>c <span class="token operator">=</span> <span class="token char">'\0'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">bufferUnder</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-char">char</span> buffer<span class="token punctuation">[</span><span class="token number">256</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>c <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token number">255</span> <span class="token operator">*</span> <span class="token keyword keyword-sizeof">sizeof</span><span class="token punctuation">(</span><span class="token keyword keyword-char">char</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">randStringGen</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">strcpy</span><span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Possible buffer overflow</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s\n"</span><span class="token punctuation">,</span> buffer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">free</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">danglingPtr</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> <span class="token operator">*</span>x<span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> <span class="token operator">*</span>y <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token number">10</span> <span class="token operator">*</span> <span class="token keyword keyword-sizeof">sizeof</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    x <span class="token operator">=</span> y<span class="token punctuation">;</span>
+    <span class="token function">free</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// x is now a dangling pointer</span>
+    <span class="token keyword keyword-int">int</span> t <span class="token operator">=</span> x<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  <span class="token comment">// Accessing freed memory</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Dangling pointer value: %d\n"</span><span class="token punctuation">,</span> t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">unInitializedPtr</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>buffer<span class="token punctuation">;</span>
+    <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>c <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token number">10</span> <span class="token operator">*</span> <span class="token keyword keyword-sizeof">sizeof</span><span class="token punctuation">(</span><span class="token keyword keyword-char">char</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">randStringGen</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">strcpy</span><span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Using an uninitialized pointer</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s\n"</span><span class="token punctuation">,</span> buffer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">free</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">free</span><span class="token punctuation">(</span>buffer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">bufferOver</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-char">char</span> buffer<span class="token punctuation">[</span><span class="token number">256</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>c <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token number">260</span> <span class="token operator">*</span> <span class="token keyword keyword-sizeof">sizeof</span><span class="token punctuation">(</span><span class="token keyword keyword-char">char</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">randStringGen</span><span class="token punctuation">(</span><span class="token number">260</span><span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">strcpy</span><span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Buffer overflow</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s\n"</span><span class="token punctuation">,</span> buffer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">free</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// New: Integer Overflow Vulnerability</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">integerOverflow</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> a <span class="token operator">=</span> INT_MAX<span class="token punctuation">;</span>  <span class="token comment">// Max signed int value</span>
+    <span class="token keyword keyword-int">int</span> b <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> result <span class="token operator">=</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>  <span class="token comment">// Causes overflow</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Integer Overflow: %d + %d = %d\n"</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> argc<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span><span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>argc <span class="token operator">!=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-int">int</span> x <span class="token operator">=</span> <span class="token function">atoi</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Convert input to integer</span>
+
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>x <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">overRun</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>x <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">unInitializedPtr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>x <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">danglingPtr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>x <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">bufferUnder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>x <span class="token operator">==</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">bufferOver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>x <span class="token operator">==</span> <span class="token number">6</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">integerOverflow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h4 id="-step-2-compile-run-and-analyze-the-program"><strong>🔹 Step 2: Compile, Run, and Analyze the Program</strong> </h4>
+<h5 id="-compilation"><strong>📌 Compilation</strong> </h5>
+<p>Compile the program using <code>gcc</code>:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>gcc <span class="token parameter variable">-o</span> vulnerable_program <span class="token parameter variable">-g</span> vulnerable_program.c
+</code></pre><h5 id="-execution"><strong>📌 Execution</strong> </h5>
+<p>Run the program with different inputs to trigger various vulnerabilities:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>./vulnerable_program <span class="token number">1</span>  <span class="token comment"># Triggers buffer overrun  </span>
+./vulnerable_program <span class="token number">2</span>  <span class="token comment"># Triggers uninitialized pointer usage  </span>
+./vulnerable_program <span class="token number">3</span>  <span class="token comment"># Triggers dangling pointer access  </span>
+./vulnerable_program <span class="token number">4</span>  <span class="token comment"># Triggers potential buffer overflow  </span>
+./vulnerable_program <span class="token number">5</span>  <span class="token comment"># Triggers buffer overflow  </span>
+./vulnerable_program <span class="token number">6</span>  <span class="token comment"># Triggers integer overflow  </span>
+</code></pre><hr>
+<h3 id="-deliverable-for-task-1"><strong>🎯 Deliverable for Task 1</strong> </h3>
+<ul>
+<li>
+<p>Submit your <strong>commented</strong> <code>vulnerable_program.c</code> file:</p>
+<ul>
+<li>Add <strong>inline comments</strong> within the code to explain each vulnerability.</li>
+<li>Include a <strong>brief summary</strong> at the top of the file describing the types of vulnerabilities demonstrated.</li>
+</ul>
+</li>
+<li>
+<p>Provide <strong>screenshots</strong> of the program’s output for at least <strong>three different inputs</strong> (e.g., <code>1</code>, <code>3</code>, and <code>5</code>).</p>
+<ul>
+<li>Ensure the screenshots clearly show any errors, warnings, or unexpected behaviors.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="-task-2-analyze-out-of-bound-write-vunerablity-via-dynamic-analysis--15-pts"><strong>📌 Task 2: Analyze Out-of-Bound Write Vunerablity via Dynamic Analysis  (15 pts)</strong> </h3>
+<h4 id="step-0-install-valgrind">Step 0: Install Valgrind </h4>
+<p>By default, <strong>Valgrind</strong> is packaged in Kali’s main repository, so an <code>apt-get install valgrind</code> should typically work. If you are getting a “not in repository” error, it usually means either your repositories are misconfigured or out-of-date. Below are the main steps to fix it:</p>
+<p><strong>Note</strong>: You need Internet access for this installation.</p>
+<hr>
+<p><strong>1. Update and Upgrade Kali Linux Packages</strong>:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> <span class="token function">apt-get</span> update
+<span class="token function">sudo</span> <span class="token function">apt-get</span> upgrade
+</code></pre><ul>
+<li>This refreshes your local package index and brings all packages current. This may take some time depending on your allocated resources and Internet speed.</li>
+</ul>
+<p><strong>2. Install Valgrind</strong></p>
+<p>With your repositories fixed and updated, install Valgrind:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> valgrind
+</code></pre><ul>
+<li>If the repository is properly enabled, apt should locate the package and install it.</li>
+</ul>
+<p><strong>3. Confirm Installation</strong></p>
+<p>After successfully installing Valgrind by either apt or source compilation, confirm it is available:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>valgrind <span class="token parameter variable">--version</span>
+</code></pre><p>You should see a version number (e.g., <code>valgrind-3.20.0</code>).</p>
+<hr>
+<h4 id="-step-1-investigate-the-overrun-function"><strong>🔹 Step 1: Investigate the <code>overRun</code> Function</strong> </h4>
+<p>The <code>overRun</code> function creates an array of <strong>10 integers</strong> using <code>malloc</code>, but then attempts to write to index <strong>10</strong>, which is <strong>out of bounds</strong> (since valid indices range from <code>0</code> to <code>9</code>).</p>
+<ol>
+<li>
+<p><strong>Run the program with input <code>1</code> to execute <code>overRun</code>:</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>./vulnerable_program <span class="token number">1</span>
+</code></pre><ul>
+<li>Observe that the program <strong>does not crash</strong> despite the out-of-bounds write.</li>
+</ul>
+</li>
+<li>
+<p><strong>Analyze the program using Valgrind:</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>valgrind <span class="token parameter variable">--tool</span><span class="token operator">=</span>memcheck ./vulnerable_program <span class="token number">1</span>
+</code></pre><ul>
+<li>Look for the <strong>"invalid write of size 4"</strong> message in the output.</li>
+<li>Note the <strong>stack trace</strong> leading to the error and identify the function and line number where the issue occurs.</li>
+</ul>
+</li>
+</ol>
+<h4 id="-respond-to-the-following-questions"><strong>📌 Respond to the following questions:</strong> </h4>
+<ul>
+<li><strong>1. Why does this invalid write error happen?</strong></li>
+<li><strong>2. Why does Valgrind report an "invalid write of size 4"? What does the <code>4</code> represent?</strong></li>
+<li><strong>3. What is an off-by-one error? Do you see this error in the <code>overRun</code> function?</strong></li>
+<li><strong>4. What is a memory leak? Explain in your own words. Do you see a memory leak in the <code>overRun</code> function?</strong></li>
+<li><strong>5. Can errors like this occur in Java? Why or why not?</strong></li>
+</ul>
+<hr>
+<h4 id="-step-2-deeper-memory-analysis"><strong>🔹 Step 2: Deeper Memory Analysis</strong> </h4>
+<ol>
+<li><strong>Run Valgrind with the <code>--leak-check=full</code> option to get more details:</strong><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>valgrind --leak-check<span class="token operator">=</span>full ./vulnerable_program <span class="token number">1</span>
+</code></pre><ul>
+<li>Compare this output with the previous run.</li>
+<li>Pay attention to the <strong>Heap Summary</strong> and how it reports memory leaks.</li>
+</ul>
+</li>
+</ol>
+<h4 id="-respond-to-the-following"><strong>📌 Respond to the following:</strong> </h4>
+<ul>
+<li><strong>6. Analyze the Heap Summary and compare it with the earlier Valgrind output. What additional details does the <code>--leak-check=full</code> option provide?</strong></li>
+</ul>
+<hr>
+<h4 id="-step-3-fix-the-overrun-function"><strong>🔹 Step 3: Fix the <code>overRun</code> Function</strong> </h4>
+<ol>
+<li>
+<p><strong>Modify the <code>overRun</code> function to remove the vulnerability.</strong></p>
+<ul>
+<li>Ensure <strong>no out-of-bounds writes</strong> occur.</li>
+<li>Properly <strong>free allocated memory</strong> to prevent leaks.</li>
+</ul>
+</li>
+<li>
+<p><strong>Re-run the program with Valgrind to verify that the issue is resolved:</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>valgrind --leak-check<span class="token operator">=</span>full ./vulnerable_program <span class="token number">1</span>
+</code></pre></li>
+</ol>
+<hr>
+<h3 id="-deliverables-for-task-2"><strong>📌 Deliverables for Task 2</strong> </h3>
+<ul>
+<li>
+<p><strong>Updated <code>overRun</code> function:</strong></p>
+<ul>
+<li>Submit the corrected function with <strong>inline comments</strong> explaining the fix.</li>
+</ul>
+</li>
+<li>
+<p><strong>Responses to analysis questions:</strong></p>
+<ul>
+<li>Answer all questions related to <strong>invalid writes, memory leaks, off-by-one errors, and Java's memory safety.</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Valgrind outputs:</strong></p>
+<ul>
+<li>Copy and paste <strong>both</strong> Valgrind outputs:
+<ol>
+<li><strong>Initial run</strong> (<code>valgrind --tool=memcheck ./vulnerable_program 1</code>)</li>
+<li><strong>Detailed analysis</strong> (<code>valgrind --leak-check=full ./vulnerable_program 1</code>)</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Comparison of Valgrind results:</strong></p>
+<ul>
+<li>Analyze and compare the <strong>Heap Summary</strong> before and after using <code>--leak-check=full</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Screenshots:</strong></p>
+<ul>
+<li>Provide <strong>screenshots</strong> showing:
+<ol>
+<li>The program running <strong>without Valgrind</strong> (<code>./vulnerable_program 1</code>).</li>
+<li>The <strong>Valgrind memory error message</strong> from the first run.</li>
+<li>The <strong>Heap Summary and Leak Summary</strong> from the <code>--leak-check=full</code> run.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="-task-3-analyze-and-fix-the-uninitialized-pointer-vulnerability-15-pts"><strong>📌 Task 3: Analyze and Fix the Uninitialized Pointer Vulnerability (15 pts)</strong> </h3>
+<h4 id="-step-1-investigate-the-uninitializedptr-function"><strong>🔹 Step 1: Investigate the <code>unInitializedPtr</code> Function</strong> </h4>
+<p>The <code>unInitializedPtr</code> function attempts to use a <strong>pointer that has not been initialized</strong>, leading to <strong>undefined behavior</strong>. This can cause crashes, unpredictable output, or security vulnerabilities.</p>
+<ol>
+<li>
+<p><strong>Run the vulnerable program with input <code>2</code> to trigger the <code>unInitializedPtr</code> function:</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>valgrind <span class="token parameter variable">--tool</span><span class="token operator">=</span>memcheck --leak-check<span class="token operator">=</span>full ./vulnerable_program <span class="token number">2</span>
+</code></pre><ul>
+<li>Identify where the memory problem is occurring.</li>
+<li>Look for messages related to <strong>uninitialized memory usage</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Respond to the following questions:</strong></p>
+<ul>
+<li><strong>7. Where is the memory problem occurring? What does the Valgrind output indicate?</strong></li>
+<li><strong>8. What is an uninitialized pointer? How could it be exploited?</strong></li>
+<li><strong>9. What is the difference between a <code>NULL</code> pointer and an uninitialized pointer?</strong></li>
+<li><strong>10. Analyze the code at the reported location. What do you think is causing the issue?</strong></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="-step-2-deeper-analysis-with-valgrind"><strong>🔹 Step 2: Deeper Analysis with Valgrind</strong> </h4>
+<p>Valgrind suggests using the <code>--track-origins=yes</code> option for more details about <strong>where the uninitialized value originates</strong>.</p>
+<ol>
+<li>
+<p><strong>Run Valgrind with the <code>--track-origins=yes</code> option:</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>valgrind <span class="token parameter variable">--tool</span><span class="token operator">=</span>memcheck --leak-check<span class="token operator">=</span>full --track-origins<span class="token operator">=</span>yes ./vulnerable_program <span class="token number">2</span>
+</code></pre><ul>
+<li>Look for the <strong>"Use of uninitialized value"</strong> message.</li>
+<li>On a <strong>64-bit machine</strong>, Valgrind may report <code>Use of uninitialized value of size 8</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Respond to the following questions:</strong></p>
+<ul>
+<li><strong>11. What additional information does <code>--track-origins=yes</code> provide?</strong></li>
+<li><strong>12. What does "Use of uninitialized value of size 8" mean? What does the <code>8</code> bytes refer to?</strong></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="-step-3-fix-the-uninitializedptr-function"><strong>🔹 Step 3: Fix the <code>unInitializedPtr</code> Function</strong> </h4>
+<ol>
+<li>
+<p><strong>Modify the <code>unInitializedPtr</code> function to remove the vulnerability.</strong></p>
+<ul>
+<li>Properly <strong>initialize pointers before using them</strong>.</li>
+<li>Ensure allocated memory is <strong>freed correctly</strong> to avoid leaks.</li>
+</ul>
+</li>
+<li>
+<p><strong>Re-run the program with Valgrind to confirm the fix:</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>valgrind <span class="token parameter variable">--tool</span><span class="token operator">=</span>memcheck --leak-check<span class="token operator">=</span>full --track-origins<span class="token operator">=</span>yes ./vulnerable_program <span class="token number">2</span>
+</code></pre></li>
+</ol>
+<hr>
+<h3 id="-deliverables-for-task-3"><strong>📌 Deliverables for Task 3</strong> </h3>
+<ul>
+<li>
+<p><strong>Updated <code>unInitializedPtr</code> function:</strong></p>
+<ul>
+<li>Submit the corrected function with <strong>inline comments</strong> explaining the fix.</li>
+</ul>
+</li>
+<li>
+<p><strong>Responses to analysis questions:</strong></p>
+<ul>
+<li>Answer all questions related to <strong>uninitialized pointers, exploitation risks, and memory debugging</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Valgrind outputs:</strong></p>
+<ul>
+<li>Copy and paste <strong>both</strong> Valgrind outputs:
+<ol>
+<li><strong>Initial run</strong> (<code>valgrind --tool=memcheck --leak-check=full ./vulnerable_program 2</code>)</li>
+<li><strong>Detailed analysis</strong> (<code>valgrind --tool=memcheck --leak-check=full --track-origins=yes ./vulnerable_program 2</code>)</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Comparison of Valgrind results:</strong></p>
+<ul>
+<li>Analyze the difference in output <strong>before and after using <code>--track-origins=yes</code></strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Screenshots:</strong></p>
+<ul>
+<li>Provide <strong>screenshots</strong> showing:
+<ol>
+<li>The program running <strong>without Valgrind</strong> (<code>./vulnerable_program 2</code>).</li>
+<li>The <strong>Valgrind memory error message</strong> from the first run.</li>
+<li>The <strong>detailed error output</strong> using <code>--track-origins=yes</code>.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="-task-4-analyze-and-fix-the-dangling-pointer-vulnerability-15-pts"><strong>📌 Task 4: Analyze and Fix the Dangling Pointer Vulnerability (15 Pts)</strong> </h3>
+<h4 id="-step-1-investigate-the-danglingptr-function"><strong>🔹 Step 1: Investigate the <code>danglingPtr</code> Function</strong> </h4>
+<p>A <strong>dangling pointer</strong> occurs when a pointer still references memory <strong>after it has been freed</strong>. Accessing such a pointer leads to <strong>undefined behavior</strong>, which could result in crashes, corrupted data, or security vulnerabilities.</p>
+<ol>
+<li>
+<p><strong>Run the vulnerable program with input <code>3</code> to trigger the <code>danglingPtr</code> function:</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>./vulnerable_program <span class="token number">3</span>
+</code></pre><ul>
+<li>Observe that <strong>no visible error</strong> occurs.</li>
+</ul>
+</li>
+<li>
+<p><strong>Analyze the <code>danglingPtr</code> function in the source code:</strong></p>
+<ul>
+<li>Identify where the pointer is being <strong>freed</strong> but still used afterward.</li>
+</ul>
+</li>
+<li>
+<p><strong>Respond to the following questions:</strong></p>
+<ul>
+<li><strong>13. What is the potential issue in the <code>danglingPtr</code> function?</strong></li>
+<li><strong>14. What is the dangling pointer problem? How could it be exploited?</strong></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="-step-2-analyze-with-valgrind"><strong>🔹 Step 2: Analyze with Valgrind</strong> </h4>
+<ol>
+<li>
+<p><strong>Run Valgrind with all previous debugging options:</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>valgrind <span class="token parameter variable">--tool</span><span class="token operator">=</span>memcheck --leak-check<span class="token operator">=</span>full --track-origins<span class="token operator">=</span>yes ./vulnerable_program <span class="token number">3</span>
+</code></pre><ul>
+<li>Investigate the <strong>Valgrind output</strong> and check for memory issues.</li>
+</ul>
+</li>
+<li>
+<p><strong>Respond to the following:</strong></p>
+<ul>
+<li><strong>15. What findings does Valgrind report?</strong></li>
+<li><strong>16. Why does Valgrind say that there is no heap summary error?</strong></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="-step-3-fix-the-danglingptr-function"><strong>🔹 Step 3: Fix the <code>danglingPtr</code> Function</strong> </h4>
+<ol>
+<li>
+<p><strong>Modify the <code>danglingPtr</code> function to prevent dangling pointer issues.</strong></p>
+<ul>
+<li>Ensure that <strong>pointers are not accessed after being freed</strong>.</li>
+<li>Set freed pointers to <strong>NULL</strong> to prevent accidental use.</li>
+</ul>
+</li>
+<li>
+<p><strong>Re-run the program with Valgrind to confirm the fix:</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>valgrind <span class="token parameter variable">--tool</span><span class="token operator">=</span>memcheck --leak-check<span class="token operator">=</span>full --track-origins<span class="token operator">=</span>yes ./vulnerable_program <span class="token number">3</span>
+</code></pre></li>
+</ol>
+<hr>
+<h3 id="-deliverables-for-task-4"><strong>📌 Deliverables for Task 4</strong> </h3>
+<ul>
+<li>
+<p><strong>Updated <code>danglingPtr</code> function:</strong></p>
+<ul>
+<li>Submit the corrected function with <strong>inline comments</strong> explaining the fix.</li>
+</ul>
+</li>
+<li>
+<p><strong>Responses to analysis questions:</strong></p>
+<ul>
+<li>Answer all questions related to <strong>dangling pointers, exploitation risks, and Valgrind output interpretation</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Valgrind outputs:</strong></p>
+<ul>
+<li>Copy and paste <strong>both</strong> Valgrind outputs:
+<ol>
+<li><strong>Initial run</strong> (<code>valgrind --tool=memcheck --leak-check=full --track-origins=yes ./vulnerable_program 3</code>)</li>
+<li><strong>Fixed version run</strong> proving that the vulnerability is resolved.</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Comparison of Valgrind results:</strong></p>
+<ul>
+<li>Explain any differences in the output <strong>before and after fixing the function</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Screenshots:</strong></p>
+<ul>
+<li>Provide <strong>screenshots</strong> showing:
+<ol>
+<li>The program running <strong>without Valgrind</strong> (<code>./vulnerable_program 3</code>).</li>
+<li>The <strong>Valgrind output</strong> before fixing the function.</li>
+<li>The <strong>Valgrind output</strong> after fixing the function.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="-task-5-detect-and-analyze-buffer-overflows-15-pts"><strong>📌 Task 5: Detect and Analyze Buffer Overflows (15 pts)</strong> </h3>
+<h4 id="-step-1-investigate-the-bufferunder-function-input-4---no-buffer-overflow-expected"><strong>🔹 Step 1: Investigate the <code>bufferUnder</code> Function (Input 4 - No Buffer Overflow Expected)</strong> </h4>
+<p>The <code>bufferUnder</code> function copies a randomly generated string into a <strong>256-byte buffer</strong>. In theory, this should not cause an overflow, but we need to verify.</p>
+<h4 id="-your-task"><strong>📌 Your Task</strong> </h4>
+<ol>
+<li>
+<p><strong>Run the program with input <code>4</code> using Valgrind:</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>valgrind <span class="token parameter variable">--tool</span><span class="token operator">=</span>memcheck --leak-check<span class="token operator">=</span>full --track-origins<span class="token operator">=</span>yes ./vulnerable_program <span class="token number">4</span>
+</code></pre><ul>
+<li>Investigate the <strong>Valgrind output</strong> and look for <strong>memory errors</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Respond to the following questions:</strong></p>
+<ul>
+<li><strong>15. Do you see any errors in the Valgrind output?</strong></li>
+<li><strong>16. After analyzing the code, do you expect to see any errors? Why or why not?</strong></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="-step-2-investigate-the-bufferover-function-input-5---buffer-overflow-expected"><strong>🔹 Step 2: Investigate the <code>bufferOver</code> Function (Input 5 - Buffer Overflow Expected)</strong> </h4>
+<p>The <code>bufferOver</code> function generates a <strong>260-character string</strong> and attempts to copy it into a <strong>256-byte buffer</strong>, which is a <strong>clear buffer overflow</strong>.</p>
+<ol>
+<li>
+<p><strong>Run the program with input <code>5</code> using Valgrind:</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>valgrind <span class="token parameter variable">--tool</span><span class="token operator">=</span>memcheck --leak-check<span class="token operator">=</span>full --track-origins<span class="token operator">=</span>yes ./vulnerable_program <span class="token number">5</span>
+</code></pre><ul>
+<li>Investigate the <strong>Valgrind output</strong> and check if <strong>buffer overflow errors</strong> are detected.</li>
+</ul>
+</li>
+<li>
+<p><strong>Respond to the following questions:</strong></p>
+<ul>
+<li><strong>17. Do you expect to see an error in the code? Why?</strong></li>
+<li><strong>18. Does Valgrind detect the buffer overflow? What errors (if any) are reported?</strong></li>
+<li><strong>19. Why does Valgrind struggle to detect buffer overflows?</strong></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="-step-3-explore-valgrinds-additional-debugging-tools"><strong>🔹 Step 3: Explore Valgrind’s Additional Debugging Tools</strong> </h4>
+<p>Valgrind offers more tools beyond <code>memcheck</code>.</p>
+<ol>
+<li>
+<p><strong>Go to the Valgrind user manual:</strong><br>
+📌 <strong><a href="https://valgrind.org/docs/manual/manual.html">Valgrind User Manual</a></strong></p>
+</li>
+<li>
+<p><strong>Respond to the following:</strong></p>
+<ul>
+<li><strong>20. List at least two other tools that Valgrind provides for debugging memory issues.</strong></li>
+<li><strong>21. Briefly explain how they might help detect errors that <code>memcheck</code> misses.</strong></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="-step-4-detect-buffer-overflows-using-gcc-addresssanitizer"><strong>🔹 Step 4: Detect Buffer Overflows Using GCC AddressSanitizer</strong> </h4>
+<p>Since Valgrind may not fully detect buffer overflows, GCC provides <strong>AddressSanitizer</strong> (<code>-fsanitize=address</code>) to catch them dynamically.</p>
+<ol>
+<li>
+<p><strong>Recompile the program with AddressSanitizer:</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>gcc <span class="token parameter variable">-o</span> vulnerable_program2 <span class="token parameter variable">-g</span> vulnerable_program.c <span class="token parameter variable">-fsanitize</span><span class="token operator">=</span>address
+</code></pre></li>
+<li>
+<p><strong>Run the program with input <code>4</code> (No buffer overflow expected):</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>./vulnerable_program2 <span class="token number">4</span>
+</code></pre><ul>
+<li>Confirm that <strong>no errors</strong> are reported.</li>
+</ul>
+</li>
+<li>
+<p><strong>Run the program with input <code>5</code> (Buffer overflow expected):</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>./vulnerable_program2 <span class="token number">5</span>
+</code></pre><ul>
+<li>Observe the <strong>output from AddressSanitizer</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Respond to the following questions:</strong></p>
+<ul>
+<li><strong>22. What errors does AddressSanitizer report?</strong></li>
+<li><strong>23. Where in the code does the error occur? Specify the line number.</strong></li>
+<li><strong>24. How does AddressSanitizer’s detection compare to Valgrind’s?</strong></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="-step-5-fix-the-bufferover-function"><strong>🔹 Step 5: Fix the <code>bufferOver</code> Function</strong> </h4>
+<ol>
+<li>
+<p><strong>Modify the <code>bufferOver</code> function to prevent buffer overflow.</strong></p>
+<ul>
+<li>Ensure that the string copied does not exceed the buffer size.</li>
+</ul>
+</li>
+<li>
+<p><strong>Re-compile and re-run the program with AddressSanitizer to verify the fix.</strong></p>
+</li>
+</ol>
+<hr>
+<h3 id="-deliverables-for-task-5"><strong>📌 Deliverables for Task 5</strong> </h3>
+<ul>
+<li>
+<p><strong>Updated <code>bufferOver</code> function:</strong></p>
+<ul>
+<li>Submit the corrected function with <strong>inline comments</strong> explaining the fix.</li>
+</ul>
+</li>
+<li>
+<p><strong>Responses to analysis questions:</strong></p>
+<ul>
+<li>Answer all questions related to <strong>Valgrind output, buffer overflows, and AddressSanitizer findings</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Valgrind outputs:</strong></p>
+<ul>
+<li>Copy and paste Valgrind results for:
+<ol>
+<li><strong>Input 4</strong> (<code>valgrind --tool=memcheck --leak-check=full --track-origins=yes ./vulnerable_program 4</code>)</li>
+<li><strong>Input 5</strong> (<code>valgrind --tool=memcheck --leak-check=full --track-origins=yes ./vulnerable_program 5</code>)</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>AddressSanitizer outputs:</strong></p>
+<ul>
+<li>Copy and paste output from:
+<ol>
+<li><strong>Input 4</strong> (<code>./vulnerable_program2 4</code>)</li>
+<li><strong>Input 5</strong> (<code>./vulnerable_program2 5</code>)</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Comparison of detection methods:</strong></p>
+<ul>
+<li>Compare Valgrind vs. AddressSanitizer in detecting buffer overflows.</li>
+</ul>
+</li>
+<li>
+<p><strong>Screenshots:</strong></p>
+<ul>
+<li>Provide <strong>screenshots</strong> showing:
+<ol>
+<li>The program running <strong>without Valgrind or AddressSanitizer</strong> (<code>./vulnerable_program 5</code>).</li>
+<li>The <strong>Valgrind output</strong> when running <code>./vulnerable_program 5</code>.</li>
+<li>The <strong>AddressSanitizer error message</strong> from <code>./vulnerable_program2 5</code>.</li>
+<li>The corrected function running successfully without errors.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="-task-6-analyze-and-mitigate-integer-overflow-vulnerability-15pts"><strong>📌 Task 6: Analyze and Mitigate Integer Overflow Vulnerability (15pts)</strong> </h3>
+<h4 id="-step-1-investigate-the-integeroverflow-function"><strong>🔹 Step 1: Investigate the <code>integerOverflow</code> Function</strong> </h4>
+<p>Integer overflow occurs when an arithmetic operation exceeds the maximum value that a variable type can store, causing unintended behavior. In the <code>integerOverflow</code> function, an <strong>signed integer</strong> is incremented beyond its <strong>maximum value (INT_MAX)</strong>, leading to an <strong>overflow</strong>.</p>
+<ol>
+<li>
+<p><strong>Run the program with input <code>6</code> to trigger the <code>integerOverflow</code> function:</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>./vulnerable_program <span class="token number">6</span>
+</code></pre><ul>
+<li>Observe the output and note any unexpected results.</li>
+</ul>
+</li>
+<li>
+<p><strong>Analyze the <code>integerOverflow</code> function in the source code:</strong></p>
+<ul>
+<li>Identify why an overflow occurs when adding <code>1</code> to <code>INT_MAX</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Respond to the following questions:</strong></p>
+<ul>
+<li><strong>25. Why does this issue occur in the <code>integerOverflow</code> function?</strong></li>
+<li><strong>26. What are the security risks associated with integer overflows? How can attackers exploit them?</strong></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="-step-2-detect-integer-overflow-using-valgrind"><strong>🔹 Step 2: Detect Integer Overflow Using Valgrind</strong> </h4>
+<ol>
+<li>
+<p><strong>Run Valgrind with Undefined Behavior Sanitizer (UBSan) enabled to detect integer overflows:</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>valgrind <span class="token parameter variable">--tool</span><span class="token operator">=</span>memcheck --leak-check<span class="token operator">=</span>full --track-origins<span class="token operator">=</span>yes ./vulnerable_program <span class="token number">6</span>
+</code></pre><ul>
+<li>Investigate if Valgrind detects the integer overflow issue.</li>
+</ul>
+</li>
+<li>
+<p><strong>Respond to the following questions:</strong></p>
+<ul>
+<li><strong>27. Does Valgrind report the integer overflow? If not, why?</strong></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="-step-3-detect-integer-overflows-using-gcc-undefined-behavior-sanitizer"><strong>🔹 Step 3: Detect Integer Overflows Using GCC Undefined Behavior Sanitizer</strong> </h4>
+<p>Since Valgrind does not detect integer overflows, GCC provides <strong>Undefined Behavior Sanitizer (UBSan)</strong> to detect undefined behavior in signed integer operations.</p>
+<ol>
+<li>
+<p><strong>Recompile the program with UBSan enabled:</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>gcc <span class="token parameter variable">-o</span> vulnerable_program2 <span class="token parameter variable">-g</span> vulnerable_program.c <span class="token parameter variable">-fsanitize</span><span class="token operator">=</span>undefined
+</code></pre></li>
+<li>
+<p><strong>Run the program with input <code>6</code> to check for overflow detection:</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>./vulnerable_program2 <span class="token number">6</span>
+</code></pre></li>
+<li>
+<p><strong>Analyze the output and respond to the following:</strong></p>
+<ul>
+<li><strong>28. What errors does UBSan report?</strong></li>
+<li><strong>29. Where in the code does the overflow occur? Specify the line number.</strong></li>
+<li><strong>30. How does UBSan’s detection compare to Valgrind’s?</strong></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="-step-4-fix-the-integeroverflow-function"><strong>🔹 Step 4: Fix the <code>integerOverflow</code> Function</strong> </h4>
+<ol>
+<li>
+<p><strong>Modify the <code>integerOverflow</code> function to prevent integer overflow.</strong></p>
+<ul>
+<li>Implement <strong>boundary checks</strong> before performing arithmetic operations.</li>
+<li>Use <strong>safe integer handling functions</strong>, such as:<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>a <span class="token operator">&gt;</span> INT_MAX <span class="token operator">-</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Integer Overflow detected! Operation aborted.\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword keyword-else">else</span> <span class="token punctuation">{</span>
+    result <span class="token operator">=</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p><strong>Re-run the program with UBSan and Valgrind to confirm the fix.</strong></p>
+</li>
+</ol>
+<hr>
+<h3 id="-deliverables-for-task-6"><strong>📌 Deliverables for Task 6</strong> </h3>
+<ul>
+<li>
+<p><strong>Updated <code>integerOverflow</code> function:</strong></p>
+<ul>
+<li>Submit the corrected function with <strong>inline comments</strong> explaining the fix.</li>
+</ul>
+</li>
+<li>
+<p><strong>Responses to analysis questions.</strong></p>
+</li>
+<li>
+<p><strong>Valgrind and UBSan outputs:</strong></p>
+<ul>
+<li>Copy and paste results for:
+<ol>
+<li><strong>Valgrind run</strong> (<code>valgrind --tool=memcheck --leak-check=full --track-origins=yes ./vulnerable_program 6</code>)</li>
+<li><strong>UBSan run</strong> (<code>./vulnerable_program2 6</code>)</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Comparison of detection methods:</strong></p>
+<ul>
+<li>Compare how <strong>Valgrind vs. UBSan</strong> detect integer overflows.</li>
+</ul>
+</li>
+<li>
+<p><strong>Screenshots:</strong></p>
+<ul>
+<li>Provide <strong>screenshots</strong> showing:
+<ol>
+<li>The program running <strong>without UBSan or Valgrind</strong> (<code>./vulnerable_program 6</code>).</li>
+<li>The <strong>Valgrind output</strong> when running <code>./vulnerable_program 6</code>.</li>
+<li>The <strong>UBSan error message</strong> from <code>./vulnerable_program2 6</code>.</li>
+<li>The corrected function running successfully without errors.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="-task-7-static-analysis-using-flawfinder-15-pts"><strong>📌 Task 7: Static Analysis Using Flawfinder (15 pts)</strong> </h3>
+<h4 id="-step-1-understanding-static-vs-dynamic-analysis"><strong>🔹 Step 1: Understanding Static vs. Dynamic Analysis</strong> </h4>
+<ol>
+<li><strong>Respond to the following question:</strong>
+<ul>
+<li><strong>31. What is the difference between static analysis and dynamic analysis of source code?</strong></li>
+<li><strong>32. Explain how static analysis tools like Flawfinder <strong>differ from dynamic tools</strong> like Valgrind and AddressSanitizer.</strong></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="-step-2-run-static-analysis-with-flawfinder"><strong>🔹 Step 2: Run Static Analysis with Flawfinder</strong> </h4>
+<ol>
+<li>
+<p><strong>Ensure Flawfinder is installed on Kali Linux:</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> flawfinder
+</code></pre></li>
+<li>
+<p><strong>Run Flawfinder on the vulnerable program:</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>flawfinder vulnerable_program.c
+</code></pre></li>
+<li>
+<p><strong>Analyze the Flawfinder output:</strong></p>
+<ul>
+<li>Identify the <strong>security warnings</strong> it reports.</li>
+<li>Compare these findings with the results from <strong>dynamic analysis (Valgrind &amp; AddressSanitizer)</strong>.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="-step-3-investigate-identified-vulnerabilities"><strong>🔹 Step 3: Investigate Identified Vulnerabilities</strong> </h4>
+<p>Flawfinder typically highlights several <strong>common vulnerabilities</strong> in C programs.</p>
+<ol>
+<li>
+<p><strong>Analyze and discuss the following vulnerabilities found in your code and answer the following questions:</strong></p>
+<p><strong>33. Buffer Overflow via <code>strcpy</code></strong></p>
+<ul>
+<li><strong>Where in the code does this occur?</strong></li>
+<li><strong>What is the associated risk level?</strong></li>
+<li><strong>Which CWE (Common Weakness Enumeration) class does this belong to?</strong></li>
+<li><strong>How can this issue be prevented?</strong></li>
+</ul>
+<p><strong>34. Use of <code>srand</code> (Weak Randomness Issue)</strong></p>
+<ul>
+<li><strong>Where is <code>srand</code> used in the code?</strong></li>
+<li><strong>Why is it a security concern?</strong></li>
+<li><strong>Which CWE does this fall under?</strong></li>
+<li><strong>What is a safer alternative?</strong></li>
+</ul>
+<p><strong>35. Use of Statically-Sized Arrays</strong></p>
+<ul>
+<li><strong>Where are fixed-size arrays being used in the program?</strong></li>
+<li><strong>What risk do they pose?</strong></li>
+<li><strong>Which CWE category do they belong to?</strong></li>
+<li><strong>How can they be replaced to improve security?</strong></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="-deliverables-for-task-7"><strong>📌 Deliverables for Task 7</strong> </h3>
+<ul>
+<li>
+<p><strong>Responses to analysis questions.</strong></p>
+</li>
+<li>
+<p><strong>Flawfinder Output:</strong></p>
+<ul>
+<li>Copy and paste the <strong>Flawfinder scan results</strong> for <code>vulnerable_program.c</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Detailed analysis of vulnerabilities:</strong></p>
+<ul>
+<li><strong>For each issue (<code>strcpy</code>, <code>srand</code>, and statically-sized arrays):</strong>
+<ul>
+<li><strong>Location in code</strong></li>
+<li><strong>Risk level</strong></li>
+<li><strong>Associated CWE</strong></li>
+<li><strong>Prevention strategies</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Screenshots:</strong></p>
+<ul>
+<li><strong>Screenshot of the Flawfinder output</strong> showing detected vulnerabilities.</li>
+</ul>
+</li>
+</ul>
+<div style="text-align: center; margin: 15px 1;">
+    <hr style="border: 5px; height: 20px; width: 100%;">
+</div>
+<h2 id="lab-6-submission-guidelines"><strong>Lab 6: Submission Guidelines</strong> </h2>
+<ol>
+<li>
+<p><strong>Report</strong>:</p>
+<ul>
+<li>
+<p>Download the provided <a href="l6_report.md"><em>lab 6 report file</em></a>.</p>
+</li>
+<li>
+<p>Complete the report by filling out all required sections, including <strong>task-level and part-level deliverables</strong>, such as:</p>
+<ul>
+<li><strong>Answers to all questions</strong> (clearly labeled per part and task).</li>
+<li><strong>Screenshots</strong> (properly annotated).</li>
+<li><strong>Updated code snippets</strong> (e.g., corrected functions) and <strong>supporting explanations</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>PDF Option</strong> (Optional):</p>
+<ul>
+<li>If converting the <code>.md</code> file to PDF:
+<ul>
+<li>Ensure <strong>all formatting, headings, code blocks, and screenshots</strong> are correctly preserved.</li>
+<li>Include any exploit scripts and the screenshots folder alongside the PDF in the <code>.zip</code> file.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Submission Format</strong>:</p>
+<ul>
+<li>Combine all files into a <strong>single compressed <code>.zip</code> file</strong> and upload to <strong>Canvas</strong>.</li>
+<li>The <code>.zip</code> file should contain:
+<ul>
+<li><strong>Lab 6 report</strong> (<code>l6_report.md</code> or converted PDF).</li>
+<li><strong>Relevant source code</strong>, including the original <code>vulnerable_program.c</code> and <strong>corrected version</strong>.</li>
+<li><strong>Exploit scripts &amp; payloads</strong> (if applicable).</li>
+<li><strong>Screenshots folder</strong> with properly named images (e.g., <code>valgrind_output.png</code>, <code>dangling_ptr_fix.png</code>).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
